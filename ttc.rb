@@ -85,4 +85,4 @@ begin
     winning_message("Computer",board)
     break
   end 
-  end until empty_slots(board).empty?
+end until empty_slots(board).empty?
