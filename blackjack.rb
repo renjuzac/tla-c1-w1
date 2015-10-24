@@ -36,7 +36,7 @@ def deal_card(deck)
 end
 
 def calculate_score(hand)
-  score_combinations = [[0]]
+  score_combinations = [[]]
   new_score_combinations = []
   hand.each do |card|
     card_val = card_value([card[0]])
@@ -87,15 +87,15 @@ def valid_player_score(player_score)
 end
 
 def valid_dealer_score(dealer_score)
-  valid_scores = dealer_score.select { |val| val <17}
+  valid_scores = dealer_score.select { |val| val < 17}
   !valid_scores.empty?
 end
 
 def display_hand_and_score(dealer_hand,dealer_score,player_hand,player_score)
   puts "Dealer hand #{dealer_hand}"
-  puts "Dealer Score : #{valid_dealer_score(dealer_score) ? dealer_score.select {|score| score <=21}:dealer_score.min }"
+  puts "Dealer Score : #{valid_dealer_score(dealer_score) ? dealer_score.select {|score| score <=21} : dealer_score.min }"
   puts "Player hand #{player_hand}"
-  puts "Player Score : #{ valid_player_score(player_score) ? player_score.select {|score| score <=21}:player_score.min}"
+  puts "Player Score : #{ valid_player_score(player_score) ? player_score.select {|score| score <=21} : player_score.min}"
 end
 
 playing_deck = initialize_deck
@@ -123,13 +123,13 @@ begin
   puts "Dealer hand #{dealer_hand}"
   puts "Player hand #{player_hand}"
   player_score = calculate_score(player_hand)
-  puts "Player Score : #{ valid_player_score(player_score) ? player_score.select {|score| score <=21}:player_score.min}"
+  puts "Player Score : #{ valid_player_score(player_score) ? player_score.select {|score| score <=21} : player_score.min}"
   break if !valid_player_score(player_score)      
   begin
     puts "Hit or Pass (H/P)"
     user_pick = gets.chomp.upcase
   end while !["H","P"].include?(user_pick)
-end while (user_pick !="P" && valid_player_score(player_score)) 
+end while (user_pick != "P" && valid_player_score(player_score)) 
 
 if player_score.include?(21) or player_score.select {|score| score <=21}.empty?
   display_hand_and_score(dealer_hand,dealer_score,player_hand,player_score)
@@ -140,7 +140,7 @@ else
     dealer_hand << deal_card(playing_deck)
     puts "Dealer hand #{dealer_hand}"
     dealer_score = calculate_score(dealer_hand)
-    puts "Dealer Score : #{valid_dealer_score(dealer_score) ? dealer_score.select {|score| score <=21}:dealer_score.min }"
+    puts "Dealer Score : #{valid_dealer_score(dealer_score) ? dealer_score.select {|score| score <=21} : dealer_score.min }"
   end 
   display_hand_and_score(dealer_hand,dealer_score,player_hand,player_score)
   puts "#{check_winner(player_score,dealer_score)}"
