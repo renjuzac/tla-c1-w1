@@ -66,7 +66,7 @@ def check_winner(player_score,dealer_score)
   end
 end
 
-def valid_score(score,max)
+def valid_score?(score,max)
   score < max
 end
 
@@ -103,19 +103,19 @@ begin
   puts "Player hand #{player_hand}"
   player_score = calculate_score(player_hand)
   puts "Player Score : #{player_score}"
-  break if !valid_score(player_score,21)      
+  break if !valid_score?(player_score,21)      
   begin
     puts "Hit or Stay (H/S)"
     user_pick = gets.chomp.upcase
   end while !["H","S"].include?(user_pick)
-end while (user_pick != "S" && valid_score(player_score,21)) 
+end while (user_pick != "S" && valid_score?(player_score,21)) 
 
 if player_score == 21
   display_hand_and_score(dealer_hand,dealer_score,player_hand,player_score)
   puts "#{check_winner(player_score,dealer_score)}"
   exit
 else 
-  while valid_score(dealer_score,17) do
+  while valid_score?(dealer_score,17) do
     dealer_hand << deal_card(playing_deck)
     puts "Dealer hand #{dealer_hand}"
     dealer_score = calculate_score(dealer_hand)
