@@ -35,7 +35,7 @@ def deal_card(deck)
   selected_card = deck.delete(pick)
 end
 
-def calculate_score(hand)      # Returns current highest valid  score
+def calculate_score(hand)      # Returns current highest valid  score unless bust
   score = 0
   ace_count = hand.select {|card| card[0] == "Ace"}.count
   hand.each do |card|  
