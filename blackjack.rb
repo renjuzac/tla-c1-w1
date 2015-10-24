@@ -65,17 +65,17 @@ def check_winner(player_score,dealer_score)
   dealer_score_max = (dealer_score.select {|score| score <=21}).max
   
   if player_score.include?(21) 
-    return "Player wins !! BlackJack"
+    return "\nPlayer wins !! BlackJack"
   elsif dealer_score.include?(21)
-    return "Dealer wins !! BlackJack"
+    return "\nDealer wins !! BlackJack"
   elsif !player_score_max 
-    return "Player Busted"
+    return "\nPlayer Busted , Dealer Wins"
   elsif !dealer_score_max
-    return "Dealer Busted"         
+    return "\nDealer Busted , Player Wins !!"         
   elsif player_score_max > dealer_score_max
-    return "Player Wins"
+    return "\nPlayer Wins"
   elsif dealer_score_max > player_score_max 
-    return "Dealer Wins"
+    return "\nDealer Wins"
   else
     return "Its a Tie"
   end
@@ -92,6 +92,7 @@ def valid_dealer_score(dealer_score)
 end
 
 def display_hand_and_score(dealer_hand,dealer_score,player_hand,player_score)
+  puts "\n \n"
   puts "Dealer hand #{dealer_hand}"
   puts "Dealer Score : #{valid_dealer_score(dealer_score) ? dealer_score.select {|score| score <=21} : dealer_score.min }"
   puts "Player hand #{player_hand}"
