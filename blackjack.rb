@@ -113,6 +113,8 @@ dealer_hand << deal_card(playing_deck)
 dealer_score = calculate_score(dealer_hand)
 player_score = calculate_score(player_hand)
 
+puts "\n\n  Welcome to BlackJack !!  \n\n"
+
 if player_score.include?(21) or dealer_score.include?(21)
   display_hand_and_score(dealer_hand,dealer_score,player_hand,player_score)
   puts "#{check_winner(player_score,dealer_score)}"
